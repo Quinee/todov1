@@ -109,3 +109,24 @@ test.describe('When todo is created',()=>{
         expect(status).toBe(200)
     })
 })
+test.describe('When todo is created',()=>{
+
+    test('Updation of non existing todo should give 404 via patch endpoint',async ({request},testInfo)=>{
+        
+        const {status,body}=await patchTodo(request,{
+            
+            status:'ACTIVE'
+        },0)
+        expect(status).toBe(404)
+    })
+
+    test('Updation of non existing todo should give 404 via put endpoint',async ({request},testInfo)=>{
+        
+        const {status,body}=await putTodo(request,{
+            title:"SedinTech_Quinee",
+            status:'ACTIVE'
+        },0)
+        expect(status).toBe(404)
+    })
+
+})
