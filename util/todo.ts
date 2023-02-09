@@ -14,3 +14,27 @@ export async function deleteTodo(request:APIRequestContext,id:number){
   const resp = await request.delete(`http://144.24.105.148:8080/v1/todo/${id}`)
   return resp.status()
 }
+
+export async function patchTodo(request:APIRequestContext,body:{title?:string,status?:string},id:number)
+{
+  const resp = await request.patch(`http://144.24.105.148:8080/v1/todo/${id}`,{
+    data:body,
+    headers:{
+      'Content-Type':'application/json'
+    }
+    
+  })
+  return {status:resp.status(), body: await resp.json()}
+}
+
+export async function putTodo(request:APIRequestContext,body:{title?:string,status?:string},id:number)
+{
+  const resp=await request.put(`http://144.24.105.148:8080/v1/todo/${id}`,{
+    data:body,
+    headers:{
+      'Content-Type':'application/json'
+    }
+    
+  })
+  return {status:resp.status(), body: await resp.json()}
+}
