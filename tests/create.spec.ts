@@ -1,16 +1,17 @@
 import { test, expect } from "@playwright/test";
 import { createTodo, deleteTodo } from "../util/todo";
 
-test.describe.skip("Negative category", () => {
+test.describe("Positive test cases", () => {
   test("Creation of todo should work without passing status field", async ({
     request,
   }, testInfo) => {
+    const title = "Bring Milk";
     const { status, body } = await createTodo(request, {
-      title: "Bring Milk",
+      title: title,
     });
     expect(status).toBe(201);
     expect(body.id).not.toBe(null);
-    expect(body.title).toBe("Bring Milk");
+    expect(body.title).toBe(title);
     testInfo["id"] = body.id;
   });
 
@@ -35,7 +36,7 @@ test.describe.skip("Negative category", () => {
   });
 });
 
-test.describe("Negative category", () => {
+test.describe("Negative test cases", () => {
   test("Creation of Todo should give 400 when title field is not passed", async ({
     request,
   }) => {

@@ -1,7 +1,7 @@
 import test, { expect } from "@playwright/test";
 import { createTodo, deleteTodo, putTodo } from "../util/todo";
 
-test.describe.skip("Positive category", () => {
+test.describe("Positive test cases", () => {
   test.beforeEach(async ({ request }, testInfo) => {
     const { status, body } = await createTodo(request, {
       title: "Buy Apple shares",
@@ -19,11 +19,11 @@ test.describe.skip("Positive category", () => {
   });
 });
 
-test.describe("Negative category", () => {
+test.describe("Negative test cases", () => {
   test("Deletion of non existing todo should give 404 via put endpoint", async ({
     request,
   }) => {
-    const { status } = await putTodo(request, {}, 22);
+    const { status } = await putTodo(request, {}, -1);
     expect(status).toBe(400);
   });
 });
