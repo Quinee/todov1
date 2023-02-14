@@ -38,3 +38,13 @@ export async function putTodo(request:APIRequestContext,body:{title?:string,stat
   })
   return {status:resp.status(), body: await resp.json()}
 }
+
+export async function getTodo(request:APIRequestContext,id:number){
+  const resp = await request.get(`http://144.24.105.148:8080/v1/todo/${id}`)
+  return {status:resp.status(), body: await resp.json()}
+}
+
+export async function getTodoAll(request:APIRequestContext){
+  const resp = await request.get(`http://144.24.105.148:8080/v1/todo`)
+  return {status:resp.status(), body: await resp.json()}
+}

@@ -1,3 +1,4 @@
+
 import test, { expect } from "@playwright/test";
 import { createTodo, deleteTodo, putTodo } from "../util/todo";
 
@@ -20,10 +21,12 @@ test.describe("Positive test cases", () => {
 });
 
 test.describe("Negative test cases", () => {
-  test("Deletion of non existing todo should give 404 via put endpoint", async ({
+  test("Deletion of non existing todo should give 404 via delete endpoint", async ({
     request,
   }) => {
-    const { status } = await putTodo(request, {}, -1);
-    expect(status).toBe(400);
+    const id=0
+    const status=await deleteTodo(request,id)
+    expect(status).toBe(404)
   });
 });
+
