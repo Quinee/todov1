@@ -31,7 +31,7 @@ test.describe('When todo is created',()=>{
 
 test('Getting non-existing todo should give 404',async ({request},testInfo)=>{
     const id=0
-    const status=await getTodo(request,id)
+    const {status, body}=await getTodo(request,id)
     expect(status).toBe(404)
 })
 type TodoResponseBody={
