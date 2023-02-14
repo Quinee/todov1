@@ -16,8 +16,9 @@ test.describe('When todo is created',()=>{
 
     test('Getting existing todo should work',async ({request},testInfo)=>{
         const id=testInfo['id']
-        const status=await getTodo(request,id)
+        const {status,body}=await getTodo(request,id)
         expect(status).toBe(200)
+        expect(body.title).toBe('SedinTech_Quinee')
     })
 
     test.afterEach(async({request}, testInfo)=>{
