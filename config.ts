@@ -1,0 +1,1 @@
+export const BASE_URL=process.env.BASE_URL??'http://144.24.105.148:8080'
